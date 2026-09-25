@@ -1,0 +1,3292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color" content="#07101f">
+
+<title>Nuclear Physics — Chapter 2 Structured Solutions</title>
+
+<!-- =========================================================
+     MATHJAX
+     This is the important part for correct equation rendering.
+     ========================================================= -->
+
+<script>
+window.MathJax = {
+    tex: {
+        inlineMath: [
+            ['\', '\']
+        ],
+        displayMath: [
+            ['\', '\']
+        ],
+        tags: 'none'
+    },
+    svg: {
+        fontCache: 'global'
+    }
+};
+</script>
+
+<script
+src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+
+
+<style>
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:
+        Inter,
+        Segoe UI,
+        Roboto,
+        Arial,
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(0,160,255,0.10),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(130,80,255,0.10),
+            transparent 30%
+        ),
+        #050b16;
+
+    color:#e9f2ff;
+    min-height:100vh;
+    line-height:1.7;
+}
+
+
+/* =========================================================
+   TOP HEADER
+   ========================================================= */
+
+.topbar{
+
+    position:sticky;
+    top:0;
+    z-index:1000;
+
+    height:72px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 28px;
+
+    background:
+        rgba(5,12,25,0.82);
+
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    border-bottom:
+        1px solid rgba(120,190,255,0.14);
+
+    box-shadow:
+        0 10px 40px rgba(0,0,0,0.30);
+}
+
+
+.brand{
+
+    display:flex;
+    align-items:center;
+    gap:13px;
+
+    font-size:18px;
+    font-weight:700;
+
+    letter-spacing:0.4px;
+}
+
+.brand-icon{
+
+    width:42px;
+    height:42px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0,190,255,0.20),
+            rgba(110,70,255,0.25)
+        );
+
+    border:
+        1px solid rgba(110,200,255,0.25);
+
+    box-shadow:
+        0 0 25px rgba(0,160,255,0.12);
+}
+
+
+.controls{
+    display:flex;
+    gap:10px;
+}
+
+.control-btn{
+
+    border:1px solid rgba(120,190,255,0.18);
+
+    background:
+        rgba(255,255,255,0.045);
+
+    color:#dcecff;
+
+    padding:9px 14px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    transition:0.25s;
+
+    font-size:13px;
+}
+
+.control-btn:hover{
+
+    background:
+        rgba(80,180,255,0.13);
+
+    border-color:
+        rgba(80,190,255,0.40);
+
+    transform:translateY(-1px);
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero{
+
+    position:relative;
+
+    min-height:470px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    padding:80px 20px;
+
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #10285d 0%,
+            #162f72 45%,
+            #25236e 100%
+        );
+}
+
+
+.hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:450px;
+    height:450px;
+
+    border-radius:50%;
+
+    background:
+        rgba(0,180,255,0.12);
+
+    filter:blur(80px);
+
+    top:-220px;
+    left:-150px;
+}
+
+
+.hero::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:500px;
+    height:500px;
+
+    border-radius:50%;
+
+    background:
+        rgba(130,70,255,0.14);
+
+    filter:blur(90px);
+
+    bottom:-300px;
+    right:-150px;
+}
+
+
+.hero-content{
+    position:relative;
+    z-index:2;
+
+    max-width:900px;
+}
+
+
+.hero-badge{
+
+    display:inline-block;
+
+    padding:7px 15px;
+
+    border-radius:30px;
+
+    border:
+        1px solid rgba(150,220,255,0.25);
+
+    background:
+        rgba(255,255,255,0.07);
+
+    backdrop-filter:blur(10px);
+
+    font-size:13px;
+
+    color:#a9dfff;
+
+    margin-bottom:25px;
+}
+
+
+.hero h1{
+
+    font-size:
+        clamp(42px, 8vw, 82px);
+
+    line-height:1.05;
+
+    font-weight:800;
+
+    letter-spacing:-2px;
+
+    margin-bottom:25px;
+
+    color:white;
+
+    text-shadow:
+        0 0 30px rgba(100,200,255,0.18);
+}
+
+
+.hero h1 span{
+
+    color:#7fcaff;
+}
+
+
+.hero p{
+
+    font-size:
+        clamp(16px, 2.5vw, 21px);
+
+    color:#d3e5ff;
+
+    max-width:700px;
+
+    margin:auto;
+}
+
+
+/* =========================================================
+   LAYOUT
+   ========================================================= */
+
+.page{
+
+    max-width:1250px;
+
+    margin:auto;
+
+    padding:45px 22px 80px;
+}
+
+
+.intro-card{
+
+    padding:28px;
+
+    margin-bottom:30px;
+
+    border-radius:22px;
+
+    background:
+        rgba(14,25,43,0.72);
+
+    border:
+        1px solid rgba(130,200,255,0.14);
+
+    backdrop-filter:blur(18px);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.20);
+}
+
+
+.intro-card h2{
+
+    color:#74c8ff;
+
+    margin-bottom:10px;
+
+    font-size:25px;
+}
+
+
+.intro-card p{
+
+    color:#b9cbe0;
+}
+
+
+/* =========================================================
+   SEARCH / FILTER
+   ========================================================= */
+
+.toolbar{
+
+    display:flex;
+
+    gap:12px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:30px;
+}
+
+
+.search{
+
+    flex:1;
+
+    min-width:230px;
+
+    padding:14px 17px;
+
+    border-radius:13px;
+
+    border:
+        1px solid rgba(120,190,255,0.16);
+
+    background:
+        rgba(255,255,255,0.045);
+
+    color:white;
+
+    outline:none;
+
+    font-size:15px;
+}
+
+
+.search:focus{
+
+    border-color:
+        rgba(70,190,255,0.55);
+
+    box-shadow:
+        0 0 0 3px rgba(50,170,255,0.08);
+}
+
+
+/* =========================================================
+   PROBLEM CARD
+   ========================================================= */
+
+.problem-card{
+
+    margin-bottom:34px;
+
+    padding:32px;
+
+    border-radius:24px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(15,28,49,0.86),
+            rgba(8,17,31,0.92)
+        );
+
+    border:
+        1px solid rgba(120,190,255,0.15);
+
+    backdrop-filter:blur(20px);
+
+    box-shadow:
+        0 22px 70px rgba(0,0,0,0.30);
+
+    overflow:hidden;
+
+    transition:
+        transform 0.3s,
+        border-color 0.3s,
+        box-shadow 0.3s;
+}
+
+
+.problem-card:hover{
+
+    transform:translateY(-3px);
+
+    border-color:
+        rgba(100,200,255,0.28);
+
+    box-shadow:
+        0 30px 90px rgba(0,0,0,0.40),
+        0 0 40px rgba(0,150,255,0.04);
+}
+
+
+/* =========================================================
+   PROBLEM HEADER
+   ========================================================= */
+
+.problem-header{
+
+    padding-bottom:25px;
+
+    margin-bottom:28px;
+
+    border-bottom:
+        1px solid rgba(120,190,255,0.10);
+}
+
+
+.problem-number{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    min-width:52px;
+
+    height:32px;
+
+    padding:0 12px;
+
+    border-radius:9px;
+
+    background:
+        rgba(70,170,255,0.12);
+
+    border:
+        1px solid rgba(70,180,255,0.22);
+
+    color:#73c8ff;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    margin-bottom:14px;
+}
+
+
+.problem-header h2{
+
+    font-size:
+        clamp(25px,4vw,37px);
+
+    line-height:1.25;
+
+    color:#f1f7ff;
+
+    font-weight:750;
+}
+
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+
+.section{
+
+    margin:25px 0;
+}
+
+
+.section-title{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-size:16px;
+
+    text-transform:uppercase;
+
+    letter-spacing:0.9px;
+
+    color:#77c9ff;
+
+    margin-bottom:13px;
+
+    font-weight:700;
+}
+
+
+.section-title::before{
+
+    content:"";
+
+    width:4px;
+
+    height:22px;
+
+    border-radius:5px;
+
+    background:
+        linear-gradient(
+            #56c8ff,
+            #806eff
+        );
+
+    box-shadow:
+        0 0 12px rgba(70,180,255,0.35);
+}
+
+
+.section p{
+
+    color:#c8d6e7;
+
+    margin-bottom:11px;
+}
+
+
+.section ul{
+
+    margin-left:23px;
+
+    color:#c8d6e7;
+}
+
+
+.section li{
+
+    margin:7px 0;
+}
+
+
+/* =========================================================
+   EQUATION BOX
+   ========================================================= */
+
+.equation{
+
+    margin:20px 0;
+
+    padding:21px 18px;
+
+    border-radius:15px;
+
+    background:
+        rgba(3,10,21,0.72);
+
+    border:
+        1px solid rgba(100,190,255,0.12);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.025),
+        0 8px 30px rgba(0,0,0,0.18);
+
+    text-align:center;
+
+    overflow-x:auto;
+
+    color:#f3f8ff;
+
+    font-size:18px;
+}
+
+
+.equation mjx-container{
+
+    max-width:100%;
+
+    overflow-x:auto;
+
+    overflow-y:hidden;
+}
+
+
+/* Larger final equations */
+
+.final-equation{
+
+    margin:20px 0;
+
+    padding:25px 18px;
+
+    border-radius:17px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(28,57,122,0.65),
+            rgba(31,34,92,0.72)
+        );
+
+    border:
+        1px solid rgba(100,190,255,0.23);
+
+    box-shadow:
+        0 0 30px rgba(50,130,255,0.07);
+
+    text-align:center;
+
+    font-size:21px;
+
+    overflow-x:auto;
+}
+
+
+/* =========================================================
+   STEP CARDS
+   ========================================================= */
+
+.step{
+
+    margin:18px 0;
+
+    padding:20px;
+
+    border-radius:15px;
+
+    background:
+        rgba(255,255,255,0.025);
+
+    border-left:
+        3px solid rgba(85,185,255,0.60);
+}
+
+
+.step h4{
+
+    color:#a9dcff;
+
+    margin-bottom:10px;
+
+    font-size:16px;
+}
+
+
+/* =========================================================
+   CONCEPT BOX
+   ========================================================= */
+
+.concept-box{
+
+    padding:20px;
+
+    border-radius:15px;
+
+    background:
+        rgba(37,72,130,0.14);
+
+    border:
+        1px solid rgba(90,180,255,0.12);
+}
+
+
+/* =========================================================
+   PHYSICAL INTERPRETATION
+   ========================================================= */
+
+.physics-box{
+
+    margin-top:27px;
+
+    padding:22px;
+
+    border-radius:17px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(33,67,120,0.18),
+            rgba(70,45,125,0.15)
+        );
+
+    border:
+        1px dashed rgba(110,195,255,0.28);
+}
+
+
+.physics-box h3{
+
+    color:#8fd4ff;
+
+    font-size:16px;
+
+    margin-bottom:10px;
+}
+
+
+.physics-box p{
+
+    color:#c8d9ec;
+}
+
+
+/* =========================================================
+   FINAL ANSWER
+   ========================================================= */
+
+.answer{
+
+    margin-top:28px;
+
+    padding:23px;
+
+    border-radius:18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(29,64,145,0.50),
+            rgba(49,42,125,0.50)
+        );
+
+    border:
+        1px solid rgba(105,190,255,0.25);
+
+    box-shadow:
+        0 10px 40px rgba(30,80,180,0.08);
+}
+
+
+.answer h3{
+
+    color:#8bd5ff;
+
+    font-size:15px;
+
+    text-transform:uppercase;
+
+    letter-spacing:0.8px;
+
+    margin-bottom:5px;
+}
+
+
+/* =========================================================
+   TABLES
+   ========================================================= */
+
+.table-wrap{
+
+    overflow-x:auto;
+
+    margin:20px 0;
+
+    border-radius:14px;
+
+    border:
+        1px solid rgba(120,190,255,0.13);
+}
+
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    min-width:500px;
+
+    background:
+        rgba(4,12,24,0.55);
+}
+
+
+th{
+
+    background:
+        rgba(70,160,255,0.10);
+
+    color:#87d2ff;
+
+    font-weight:700;
+
+    padding:13px;
+
+    text-align:center;
+
+    border-bottom:
+        1px solid rgba(120,190,255,0.13);
+}
+
+
+td{
+
+    padding:12px;
+
+    text-align:center;
+
+    color:#c8d7e9;
+
+    border-bottom:
+        1px solid rgba(120,190,255,0.07);
+}
+
+
+tr:last-child td{
+
+    border-bottom:none;
+}
+
+
+tr:hover td{
+
+    background:
+        rgba(80,170,255,0.035);
+}
+
+
+/* =========================================================
+   COUPLING TREE
+   ========================================================= */
+
+.tree{
+
+    padding:24px;
+
+    margin:20px 0;
+
+    border-radius:16px;
+
+    background:
+        rgba(4,11,23,0.70);
+
+    border:
+        1px solid rgba(100,190,255,0.13);
+
+    text-align:center;
+
+    overflow-x:auto;
+}
+
+
+.tree-line{
+
+    margin:12px 0;
+
+    color:#cfe4f8;
+}
+
+
+.arrow{
+
+    color:#70caff;
+
+    font-size:22px;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+footer{
+
+    text-align:center;
+
+    padding:40px 20px;
+
+    color:#71849a;
+
+    border-top:
+        1px solid rgba(120,190,255,0.08);
+
+    margin-top:40px;
+}
+
+
+/* =========================================================
+   BACK TO TOP
+   ========================================================= */
+
+.top-button{
+
+    position:fixed;
+
+    right:20px;
+
+    bottom:20px;
+
+    width:48px;
+    height:48px;
+
+    border-radius:50%;
+
+    border:
+        1px solid rgba(100,190,255,0.25);
+
+    background:
+        rgba(15,35,65,0.85);
+
+    color:#8ed5ff;
+
+    cursor:pointer;
+
+    font-size:20px;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    backdrop-filter:blur(10px);
+
+    z-index:500;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media(max-width:700px){
+
+    .topbar{
+
+        height:64px;
+
+        padding:0 14px;
+    }
+
+    .brand{
+
+        font-size:14px;
+    }
+
+    .brand-icon{
+
+        width:36px;
+        height:36px;
+    }
+
+    .controls .control-btn{
+
+        padding:8px 10px;
+
+        font-size:11px;
+    }
+
+    .hero{
+
+        min-height:430px;
+
+        padding:60px 18px;
+    }
+
+    .hero h1{
+
+        letter-spacing:-1px;
+    }
+
+    .page{
+
+        padding:28px 12px 60px;
+    }
+
+    .problem-card{
+
+        padding:21px 17px;
+
+        border-radius:19px;
+    }
+
+    .equation{
+
+        font-size:16px;
+
+        padding:18px 10px;
+    }
+
+    .final-equation{
+
+        font-size:18px;
+
+        padding:21px 10px;
+    }
+
+    .step{
+
+        padding:16px;
+    }
+
+}
+
+
+/* =========================================================
+   PRINT
+   ========================================================= */
+
+@media print{
+
+    body{
+
+        background:white;
+
+        color:black;
+    }
+
+    .topbar,
+    .toolbar,
+    .top-button{
+
+        display:none !important;
+    }
+
+    .hero{
+
+        background:white;
+
+        color:black;
+
+        min-height:auto;
+
+        padding:30px;
+    }
+
+    .hero h1,
+    .hero p{
+
+        color:black;
+
+        text-shadow:none;
+    }
+
+    .problem-card{
+
+        box-shadow:none;
+
+        background:white;
+
+        border:1px solid #ccc;
+
+        break-inside:avoid;
+    }
+
+    .section p,
+    .section li,
+    .physics-box p,
+    td{
+
+        color:#222;
+    }
+
+    .equation,
+    .final-equation{
+
+        background:#f5f5f5;
+
+        color:black;
+
+        border:1px solid #ddd;
+    }
+}
+
+</style>
+</head>
+
+
+<body id="top">
+
+
+<!-- =========================================================
+     TOP BAR
+     ========================================================= -->
+
+<header class="topbar">
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            ⚛
+        </div>
+
+        <span>
+            Nuclear Physics — Chapter 2
+        </span>
+
+    </div>
+
+
+    <div class="controls">
+
+        <button
+            class="control-btn"
+            onclick="window.print()">
+
+            Print
+
+        </button>
+
+        <button
+            class="control-btn"
+            onclick="toggleAll()">
+
+            Expand / Collapse
+
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================================================
+     HERO
+     ========================================================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="hero-badge">
+            Structured Problem Solutions
+        </div>
+
+        <h1>
+            Nuclear Physics —
+            <span>Chapter 2</span>
+        </h1>
+
+        <p>
+            Problems 1–16
+            <br>
+            Question → Concept → Complete Solution → Physical Interpretation
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     MAIN
+     ========================================================= -->
+
+<main class="page">
+
+
+<div class="intro-card">
+
+    <h2>
+        Chapter Solution Guide
+    </h2>
+
+    <p>
+        Complete worked solutions for Problems 1–16.
+        Equations are rendered with MathJax for correct
+        mathematical notation on desktop and mobile.
+    </p>
+
+</div>
+
+
+<!-- SEARCH -->
+
+<div class="toolbar">
+
+    <input
+        id="search"
+        class="search"
+        type="text"
+        placeholder="Search Problem 1–16, harmonic oscillator, spin, wells..."
+        oninput="searchProblems()">
+
+</div>
+
+
+
+<!-- =========================================================
+     PROBLEM 1
+     ========================================================= -->
+
+<article class="problem-card">
+
+<div class="problem-header">
+
+    <div class="problem-number">
+        PROBLEM 01
+    </div>
+
+    <h2>
+        Transmission through a finite barrier for E>V_0
+    </h2>
+
+</div>
+
+
+<section class="section">
+
+<div class="section-title">
+    Question Statement
+</div>
+
+<p>
+Derive Equation (2.37) and plot the transmission coefficient
+T as a function of the incident-particle energy E.
+Comment on the behavior of T.
+</p>
+
+</section>
+
+
+<section class="section">
+
+<div class="section-title">
+    Concept
+</div>
+
+<div class="concept-box">
+
+<p>
+For the finite barrier:
+</p>
+
+<div class="equation">
+
+\[
+V(x)=
+\begin{cases}
+0,&x<0,\\
+V_0,&0\le x\le a,\\
+0,&x>a.
+\end{cases}
+\]
+
+</div>
+
+<p>
+For E>V_0, the wave is oscillatory in all three regions.
+Define
+</p>
+
+<div class="equation">
+
+\[
+k=\frac{\sqrt{2mE}}{\hbar},
+\qquad
+q=\frac{\sqrt{2m(E-V_0)}}{\hbar}.
+\]
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<div class="section-title">
+    Complete Solution
+</div>
+
+
+<div class="step">
+
+<h4>Step 1 — Region I</h4>
+
+<div class="equation">
+
+\[
+\psi_1=Ae^{ikx}+Be^{-ikx}
+\]
+
+</div>
+
+<p>
+The first term is the incident wave and the second is
+the reflected wave.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<h4>Step 2 — Region II</h4>
+
+<div class="equation">
+
+\[
+\psi_2=Ce^{iqx}+De^{-iqx}
+\]
+
+</div>
+
+</div>
+
+
+<div class="step">
+
+<h4>Step 3 — Region III</h4>
+
+<div class="equation">
+
+\[
+\psi_3=Fe^{ikx}
+\]
+
+</div>
+
+<p>
+There is no wave incident from +\infty.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<h4>Step 4 — Boundary conditions at x=0</h4>
+
+<div class="equation">
+
+\[
+A+B=C+D
+\]
+
+</div>
+
+<div class="equation">
+
+\[
+k(A-B)=q(C-D)
+\]
+
+</div>
+
+</div>
+
+
+<div class="step">
+
+<h4>Step 5 — Boundary conditions at x=a</h4>
+
+<div class="equation">
+
+\[
+Ce^{iqa}+De^{-iqa}=Fe^{ika}
+\]
+
+</div>
+
+<div class="equation">
+
+\[
+q(Ce^{iqa}-De^{-iqa})
+=
+kFe^{ika}.
+\]
+
+</div>
+
+</div>
+
+
+<div class="step">
+
+<h4>Step 6 — Amplitude ratio</h4>
+
+<div class="equation">
+
+\[
+\frac{F}{A}
+=
+\frac{e^{-ika}}
+{
+\cos(qa)
+-i
+\left(
+\frac{k^2+q^2}{2kq}
+\right)
+\sin(qa)
+}.
+\]
+
+</div>
+
+</div>
+
+
+<div class="step">
+
+<h4>Step 7 — Transmission coefficient</h4>
+
+<p>
+Because the potential is the same on both sides,
+the incident and transmitted wave numbers are equal.
+Therefore:
+</p>
+
+<div class="equation">
+
+\[
+T=
+\left|\frac FA\right|^2.
+\]
+
+</div>
+
+<p>
+Hence:
+</p>
+
+<div class="final-equation">
+
+\[
+\boxed{
+T=
+\left[
+1+
+\frac{V_0^2}
+{4E(E-V_0)}
+\sin^2(qa)
+\right]^{-1}
+}
+\]
+
+</div>
+
+<div class="equation">
+
+\[
+\boxed{
+q=
+\frac{\sqrt{2m(E-V_0)}}{\hbar}
+}
+\]
+
+</div>
+
+</div>
+
+
+<div class="step">
+
+<h4>Step 8 — Resonance</h4>
+
+<div class="equation">
+
+\[
+qa=n\pi
+\]
+
+</div>
+
+<p>
+Then
+</p>
+
+<div class="equation">
+
+\[
+\sin^2(qa)=0
+\]
+
+</div>
+
+<p>
+and therefore
+</p>
+
+<div class="final-equation">
+
+\[
+\boxed{T=1}
+\]
+
+</div>
+
+<p>
+The resonance energies are:
+</p>
+
+<div class="equation">
+
+\[
+\boxed{
+E_n=
+V_0+
+\frac{n^2\pi^2\hbar^2}{2ma^2}
+}
+\]
+
+</div>
+
+</div>
+
+
+<div class="step">
+
+<h4>Step 9 — High-energy behavior</h4>
+
+<div class="equation">
+
+\[
+E\gg V_0
+\quad\Rightarrow\quad
+T\rightarrow1.
+\]
+
+</div>
+
+<p>
+Thus a highly energetic particle is transmitted almost completely.
+</p>
+
+</div>
+
+</section>
+
+
+<div class="physics-box">
+
+<h3>Physical Interpretation</h3>
+
+<p>
+The particle wave is reflected at both barrier boundaries.
+The reflected waves interfere with one another. At special
+energies the interference produces complete transmission:
+resonant transmission.
+</p>
+
+</div>
+
+
+<div class="answer">
+
+<h3>Final Answer</h3>
+
+<div class="final-equation">
+
+\[
+\boxed{
+T=
+\left[
+1+
+\frac{V_0^2}
+{4E(E-V_0)}
+\sin^2(qa)
+\right]^{-1}
+}
+\]
+
+</div>
+
+</div>
+
+</article>
+
+
+
+<!-- =========================================================
+     PROBLEM 2
+     ========================================================= -->
+
+<article class="problem-card">
+
+<div class="problem-header">
+
+<div class="problem-number">
+PROBLEM 02
+</div>
+
+<h2>
+Transmission through a finite barrier for E<V_0
+</h2>
+
+</div>
+
+
+<section class="section">
+
+<div class="section-title">
+Question Statement
+</div>
+
+<p>
+Derive Equation (2.39) and plot the transmission coefficient
+as a function of E.
+</p>
+
+</section>
+
+
+<section class="section">
+
+<div class="section-title">
+Concept
+</div>
+
+<p>
+For E<V_0, the region inside the barrier is classically
+forbidden. Define:
+</p>
+
+<div class="equation">
+
+\[
+k=
+\frac{\sqrt{2mE}}{\hbar}
+\]
+
+\[
+\boxed{
+\kappa=
+\frac{\sqrt{2m(V_0-E)}}{\hbar}
+}
+\]
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<div class="section-title">
+Complete Solution
+</div>
+
+
+<div class="step">
+
+<h4>Step 1 — Wave functions</h4>
+
+<div class="equation">
+
+\[
+\psi_1=Ae^{ikx}+Be^{-ikx}
+\]
+
+\[
+\psi_2=Ce^{\kappa x}+De^{-\kappa x}
+\]
+
+\[
+\psi_3=Fe^{ikx}
+\]
+
+</div>
+
+</div>
+
+
+<div class="step">
+
+<h4>Step 2 — Boundary conditions</h4>
+
+<div class="equation">
+
+\[
+\psi_1(0)=\psi_2(0)
+\]
+
+\[
+\psi_1'(0)=\psi_2'(0)
+\]
+
+\[
+\psi_2(a)=\psi_3(a)
+\]
+
+\[
+\psi_2'(a)=\psi_3'(a)
+\]
+
+</div>
+
+</div>
+
+
+<div class="step">
+
+<h4>Step 3 — Hyperbolic form</h4>
+
+<p>
+For E<V_0,
+</p>
+
+<div class="equation">
+
+\[
+q=i\kappa
+\]
+
+</div>
+
+<p>
+and
+</p>
+
+<div class="equation">
+
+\[
+\sin(i\kappa a)
+=
+i\sinh(\kappa a).
+\]
+
+</div>
+
+</div>
+
+
+<div class="step">
+
+<h4>Step 4 — Transmission coefficient</h4>
+
+<div class="final-equation">
+
+\[
+\boxed{
+T=
+\left[
+1+
+\frac{V_0^2}
+{4E(V_0-E)}
+\sinh^2(\kappa a)
+\right]^{-1}
+}
+\]
+
+</div>
+
+</div>
+
+
+<div class="step">
+
+<h4>Step 5 — Thick barrier approximation</h4>
+
+<p>
+For
+</p>
+
+<div class="equation">
+
+\[
+\kappa a\gg1
+\]
+
+</div>
+
+<p>
+we have
+</p>
+
+<div class="equation">
+
+\[
+\sinh(\kappa a)
+\approx
+\frac12e^{\kappa a}.
+\]
+
+</div>
+
+<p>
+Therefore approximately:
+</p>
+
+<div class="final-equation">
+
+\[
+\boxed{
+T\propto e^{-2\kappa a}
+}
+\]
+
+</div>
+
+</div>
+
+</section>
+
+
+<div class="physics-box">
+
+<h3>Physical Interpretation</h3>
+
+<p>
+Classically a particle with E<V_0 cannot cross the barrier.
+Quantum mechanically the wave function penetrates the forbidden
+region and produces a nonzero transmission probability.
+This is quantum tunneling.
+</p>
+
+</div>
+
+</article>
+
+
+
+<!-- =========================================================
+     PROBLEM 3
+     ========================================================= -->
+
+<article class="problem-card">
+
+<div class="problem-header">
+
+<div class="problem-number">
+PROBLEM 03
+</div>
+
+<h2>
+Attractive finite square well
+</h2>
+
+</div>
+
+
+<section class="section">
+
+<div class="section-title">
+Question Statement
+</div>
+
+<p>
+Solve the Schrödinger equation for
+</p>
+
+<div class="equation">
+
+\[
+V(x)=
+\begin{cases}
+0,&x<0,\\
+-V_0,&0<x<a,\\
+0,&x>a,
+\end{cases}
+\]
+
+</div>
+
+<p>
+where V_0>0 and E>0.
+Particles are incident from x=-\infty.
+Express all coefficients in terms of one common coefficient.
+</p>
+
+</section>
+
+
+<section class="section">
+
+<div class="section-title">
+Concept
+</div>
+
+<p>
+Outside the well:
+</p>
+
+<div class="equation">
+
+\[
+\boxed{
+k=
+\frac{\sqrt{2mE}}{\hbar}
+}
+\]
+
+</div>
+
+<p>
+Inside the attractive well:
+</p>
+
+<div class="equation">
+
+\[
+\boxed{
+q=
+\frac{\sqrt{2m(E+V_0)}}{\hbar}
+}
+\]
+
+</div>
+
+<p>
+Since V_0>0,
+</p>
+
+<div class="equation">
+
+\[
+q>k.
+\]
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<div class="section-title">
+Complete Solution
+</div>
+
+
+<div class="step">
+
+<h4>Region I: x<0</h4>
+
+<div class="equation">
+
+\[
+\psi_1=Ae^{ikx}+Be^{-ikx}
+\]
+
+</div>
+
+</div>
+
+
+<div class="step">
+
+<h4>Region II: 0<x<a</h4>
+
+<div class="equation">
+
+\[
+\psi_2=Ce^{iqx}+De^{-iqx}
+\]
+
+</div>
+
+</div>
+
+
+<div class="step">
+
+<h4>Region III: x>a</h4>
+
+<div class="equation">
+
+\[
+\psi_3=Fe^{ikx}
+\]
+
+</div>
+
+</div>
+
+
+<div class="step">
+
+<h4>Boundary conditions at x=0</h4>
+
+<div class="equation">
+
+\[
+A+B=C+D
+\]
+
+\[
+k(A-B)=q(C-D)
+\]
+
+</div>
+
+</div>
+
+
+<div class="step">
+
+<h4>Boundary conditions at x=a</h4>
+
+<div class="equation">
+
+\[
+Ce^{iqa}+De^{-iqa}=Fe^{ika}
+\]
+
+\[
+q(Ce^{iqa}-De^{-iqa})
+=
+kFe^{ika}
+\]
+
+</div>
+
+</div>
+
+
+<div class="step">
+
+<h4>Choose F=F_0</h4>
+
+<div class="equation">
+
+\[
+\boxed{
+C=
+F_0e^{i(k-q)a}
+\frac{k+q}{2q}
+}
+\]
+
+\[
+\boxed{
+D=
+F_0e^{i(k+q)a}
+\frac{q-k}{2q}
+}
+\]
+
+</div>
+
+<p>
+Using the x=0 conditions:
+</p>
+
+<div class="equation">
+
+\[
+\boxed{
+A=
+F_0e^{ika}
+\left[
+\cos(qa)
+-i\frac{k^2+q^2}{2kq}\sin(qa)
+\right]
+}
+\]
+
+\[
+\boxed{
+B=
+iF_0e^{ika}
+\frac{q^2-k^2}{2kq}\sin(qa)
+}
+\]
+
+</div>
+
+<div class="final-equation">
+
+\[
+\boxed{
+F=F_0
+}
+\]
+
+</div>
+
+</div>
+
+</section>
+
+
+<div class="physics-box">
+
+<h3>Physical Interpretation</h3>
+
+<p>
+The attractive well increases the kinetic energy of the particle
+inside the well. Hence q>k, meaning that the wavelength inside
+the well is shorter than outside.
+</p>
+
+</div>
+
+</article>
+
+
+
+<!-- =========================================================
+     PROBLEM 4
+     ========================================================= -->
+
+<article class="problem-card">
+
+<div class="problem-header">
+
+<div class="problem-number">
+PROBLEM 04
+</div>
+
+<h2>
+Bound states of a finite square well for P=10
+</h2>
+
+</div>
+
+
+<section class="section">
+
+<div class="section-title">
+Question Statement
+</div>
+
+<p>
+Find the number of bound states and their energies in the
+finite one-dimensional square well when
+</p>
+
+<div class="final-equation">
+
+\[
+\boxed{P=10}
+\]
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<div class="section-title">
+Concept
+</div>
+
+<div class="equation">
+
+\[
+\boxed{
+P=
+\left(
+\frac{mV_0a^2}{2\hbar^2}
+\right)^{1/2}
+}
+\]
+
+</div>
+
+<p>
+The allowed roots satisfy
+</p>
+
+<div class="equation">
+
+\[
+\alpha\tan\alpha
+=
+\sqrt{P^2-\alpha^2}
+\]
+
+\[
+-\alpha\cot\alpha
+=
+\sqrt{P^2-\alpha^2}.
+\]
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<div class="section-title">
+Complete Solution
+</div>
+
+<p>
+For P=10, the allowed roots are approximately:
+</p>
+
+
+<div class="table-wrap">
+
+<table>
+
+<tr>
+<th>State</th>
+<th>Parity</th>
+<th>\alpha</th>
+<th>E/(2\hbar^2/ma^2)</th>
+</tr>
+
+<tr>
+<td>1</td>
+<td>Even</td>
+<td>1.42755</td>
+<td>4.0758</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>Odd</td>
+<td>2.85234</td>
+<td>16.2717</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>Even</td>
+<td>4.27110</td>
+<td>36.4845</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>Odd</td>
+<td>5.67921</td>
+<td>64.5068</td>
+</tr>
+
+<tr>
+<td>5</td>
+<td>Even</td>
+<td>7.06889</td>
+<td>99.9384</td>
+</tr>
+
+<tr>
+<td>6</td>
+<td>Odd</td>
+<td>8.42320</td>
+<td>141.9007</td>
+</tr>
+
+<tr>
+<td>7</td>
+<td>Even</td>
+<td>9.67888</td>
+<td>187.3616</td>
+</tr>
+
+</table>
+
+</div>
+
+
+<div class="step">
+
+<h4>Energy relation</h4>
+
+<div class="equation">
+
+\[
+E=
+\frac{2\hbar^2\alpha^2}{ma^2}
+\]
+
+</div>
+
+<p>
+The well depth is
+</p>
+
+<div class="equation">
+
+\[
+V_0=
+\frac{2\hbar^2P^2}{ma^2}.
+\]
+
+</div>
+
+<p>
+For P=10:
+</p>
+
+<div class="equation">
+
+\[
+V_0=
+200\frac{\hbar^2}{ma^2}.
+\]
+
+</div>
+
+<p>
+All seven energies lie below V_0, while the next root does
+not occur before \alpha=P=10.
+</p>
+
+</div>
+
+
+<div class="answer">
+
+<h3>Final Answer</h3>
+
+<div class="final-equation">
+
+\[
+\boxed{
+\text{Number of bound states}=7
+}
+\]
+
+</div>
+
+</div>
+
+</section>
+
+
+<div class="physics-box">
+
+<h3>Physical Interpretation</h3>
+
+<p>
+A finite well supports only a finite number of bound states.
+Increasing the effective depth or width increases P and allows
+more standing-wave patterns to fit inside the well.
+</p>
+
+</div>
+
+</article>
+
+
+
+<!-- =========================================================
+     PROBLEM 5
+     ========================================================= -->
+
+<article class="problem-card">
+
+<div class="problem-header">
+
+<div class="problem-number">
+PROBLEM 05
+</div>
+
+<h2>
+The half harmonic oscillator
+</h2>
+
+</div>
+
+
+<section class="section">
+
+<div class="section-title">
+Question Statement
+</div>
+
+<p>
+Find the solution to the half harmonic oscillator and compare its
+energy values and wave functions with those of the full harmonic
+oscillator.
+</p>
+
+</section>
+
+
+<section class="section">
+
+<div class="section-title">
+Concept
+</div>
+
+<div class="equation">
+
+\[
+V(x)=
+\begin{cases}
+\infty,&x<0,\\
+\dfrac12kx^2,&x>0.
+\end{cases}
+\]
+
+</div>
+
+<p>
+For the full oscillator:
+</p>
+
+<div class="equation">
+
+\[
+\boxed{
+E_n=
+\hbar\omega
+\left(
+n+\frac12
+\right)
+}
+\]
+
+</div>
+
+<p>
+The infinite wall requires
+</p>
+
+<div class="final-equation">
+
+\[
+\boxed{\psi(0)=0}
+\]
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<div class="section-title">
+Complete Solution
+</div>
+
+
+<div class="step">
+
+<h4>Full oscillator wave functions</h4>
+
+<div class="equation">
+
+\[
+\psi_n(x)
+=
+\frac{1}{\sqrt{2^n n!}}
+\left(
+\frac{\alpha}{\sqrt{\pi}}
+\right)^{1/2}
+H_n(\alpha x)
+e^{-\alpha^2x^2/2}
+\]
+
+</div>
+
+<div class="equation">
+
+\[
+\alpha=
+\sqrt{\frac{m\omega}{\hbar}}.
+\]
+
+</div>
+
+</div>
+
+
+<div class="step">
+
+<h4>Even states</h4>
+
+<p>
+For n=0,2,4,\ldots, the wave functions are even:
+</p>
+
+<div class="equation">
+
+\[
+\psi_n(-x)=\psi_n(x).
+\]
+
+</div>
+
+<p>
+Generally \psi_n(0)\neq0, so they violate the wall condition.
+They are therefore excluded.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<h4>Odd states</h4>
+
+<p>
+For n=1,3,5,\ldots:
+</p>
+
+<div class="equation">
+
+\[
+\psi_n(-x)=-\psi_n(x)
+\]
+
+</div>
+
+<p>
+so
+</p>
+
+<div class="equation">
+
+\[
+\psi_n(0)=0.
+\]
+
+</div>
+
+<p>
+Therefore the odd states survive.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<h4>Allowed energies</h4>
+
+<p>
+Put
+</p>
+
+<div class="equation">
+
+\[
+n=2r+1.
+\]
+
+</div>
+
+<p>
+Then:
+</p>
+
+<div class="final-equation">
+
+\[
+\boxed{
+E_r=
+\left(
+2r+\frac32
+\right)\hbar\omega
+}
+\]
+
+</div>
+
+<p>
+Thus:
+</p>
+
+<div class="equation">
+
+\[
+\boxed{
+\frac32\hbar\omega,\quad
+\frac72\hbar\omega,\quad
+\frac{11}{2}\hbar\omega,\quad
+\frac{15}{2}\hbar\omega,\ldots
+}
+\]
+
+</div>
+
+
+<div class="step">
+
+<h4>Half-oscillator wave functions</h4>
+
+<div class="final-equation">
+
+\[
+\boxed{
+\psi_r^{(\mathrm{half})}(x)
+=
+\sqrt2\,
+\psi_{2r+1}^{(\mathrm{full})}(x),
+\qquad x>0
+}
+\]
+
+</div>
+
+<p>
+and
+</p>
+
+<div class="equation">
+
+\[
+\psi(x)=0,
+\qquad x\le0.
+\]
+
+</div>
+
+</div>
+
+</section>
+
+
+<div class="physics-box">
+
+<h3>Physical Interpretation</h3>
+
+<p>
+The wall imposes \psi(0)=0. Only the full harmonic-oscillator
+states that already have a node at x=0 satisfy this condition.
+Therefore odd states survive and even states disappear.
+</p>
+
+</div>
+
+</article>
+
+
+
+<!-- =========================================================
+     PROBLEM 6
+     ========================================================= -->
+
+<article class="problem-card">
+
+<div class="problem-header">
+
+<div class="problem-number">
+PROBLEM 06
+</div>
+
+<h2>
+Probability beyond the classical turning points
+</h2>
+
+</div>
+
+
+<section class="section">
+
+<div class="section-title">
+Question Statement
+</div>
+
+<p>
+For the ground state and first two excited states of the
+one-dimensional simple harmonic oscillator, find the probability
+for the particle to be beyond the classical turning points.
+</p>
+
+</section>
+
+
+<section class="section">
+
+<div class="section-title">
+Concept
+</div>
+
+<div class="equation">
+
+\[
+E_n=
+\hbar\omega
+\left(
+n+\frac12
+\right)
+\]
+
+</div>
+
+<p>
+The classical turning point satisfies:
+</p>
+
+<div class="equation">
+
+\[
+E_n=
+\frac12m\omega^2x_t^2.
+\]
+
+</div>
+
+<p>
+Therefore:
+</p>
+
+<div class="equation">
+
+\[
+\boxed{
+x_t=
+\frac{\sqrt{2n+1}}{\alpha}
+}
+\]
+
+</div>
+
+<div class="equation">
+
+\[
+\alpha=
+\sqrt{\frac{m\omega}{\hbar}}.
+\]
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<div class="section-title">
+Complete Solution
+</div>
+
+
+<div class="step">
+
+<h4>Ground state n=0</h4>
+
+<div class="equation">
+
+\[
+u_t=1
+\]
+
+</div>
+
+<div class="equation">
+
+\[
+P_0=
+\frac{2}{\sqrt{\pi}}
+\int_1^\infty e^{-u^2}\,du
+\]
+
+</div>
+
+<div class="final-equation">
+
+\[
+\boxed{
+P_0=\operatorname{erfc}(1)=0.1573
+}
+\]
+
+</div>
+
+<p>
+Therefore approximately 15.73\% lies beyond the classical
+turning points.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<h4>First excited state n=1</h4>
+
+<div class="equation">
+
+\[
+u_t=\sqrt3
+\]
+
+</div>
+
+<div class="equation">
+
+\[
+\psi_1(u)
+=
+\frac{\sqrt2}{\pi^{1/4}}
+u e^{-u^2/2}
+\]
+
+</div>
+
+<div class="equation">
+
+\[
+P_1
+=
+2
+\int_{\sqrt3}^{\infty}
+\frac{2u^2}{\sqrt{\pi}}
+e^{-u^2}\,du
+\]
+
+</div>
+
+<div class="final-equation">
+
+\[
+\boxed{
+P_1=0.1116
+}
+\]
+
+</div>
+
+<p>
+Approximately 11.16\%.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<h4>Second excited state n=2</h4>
+
+<div class="equation">
+
+\[
+u_t=\sqrt5
+\]
+
+</div>
+
+<div class="equation">
+
+\[
+|\psi_2(u)|^2
+=
+\frac{1}{8\sqrt{\pi}}
+(4u^2-2)^2e^{-u^2}
+\]
+
+</div>
+
+<div class="equation">
+
+\[
+P_2=
+2\int_{\sqrt5}^{\infty}
+|\psi_2(u)|^2du
+\]
+
+</div>
+
+<div class="final-equation">
+
+\[
+\boxed{
+P_2=0.09507
+}
+\]
+
+</div>
+
+<p>
+Approximately 9.51\%.
+</p>
+
+</div>
+
+
+<div class="table-wrap">
+
+<table>
+
+<tr>
+<th>State</th>
+<th>Turning point</th>
+<th>Probability outside</th>
+</tr>
+
+<tr>
+<td>n=0</td>
+<td>1/\alpha</td>
+<td>15.73%</td>
+</tr>
+
+<tr>
+<td>n=1</td>
+<td>\sqrt3/\alpha</td>
+<td>11.16%</td>
+</tr>
+
+<tr>
+<td>n=2</td>
+<td>\sqrt5/\alpha</td>
+<td>9.51%</td>
+</tr>
+
+</table>
+
+</div>
+
+</section>
+
+
+<div class="physics-box">
+
+<h3>Physical Interpretation</h3>
+
+<p>
+Classically the particle cannot exist outside the turning points.
+Quantum mechanically the wave function extends into the classically
+forbidden region, producing a nonzero probability there.
+</p>
+
+</div>
+
+</article>
+
+
+
+<!-- =========================================================
+     PROBLEM 7
+     ========================================================= -->
+
+<article class="problem-card">
+
+<div class="problem-header">
+
+<div class="problem-number">
+PROBLEM 07
+</div>
+
+<h2>
+Ground-state uncertainty of the harmonic oscillator
+</h2>
+
+</div>
+
+
+<section class="section">
+
+<div class="section-title">
+Question Statement
+</div>
+
+<p>
+For the ground state of the one-dimensional simple harmonic oscillator:
+</p>
+
+<ul>
+
+<li>Find \langle x\rangle and \langle x^2\rangle.</li>
+
+<li>Find \Delta x.</li>
+
+<li>Find \langle p_x\rangle and \langle p_x^2\rangle.</li>
+
+<li>Find \Delta p_x and \Delta x\Delta p_x.</li>
+
+</ul>
+
+</section>
+
+
+<section class="section">
+
+<div class="section-title">
+Concept
+</div>
+
+<div class="equation">
+
+\[
+\boxed{
+\psi_0(x)
+=
+\left(
+\frac{\alpha}{\sqrt{\pi}}
+\right)^{1/2}
+e^{-\alpha^2x^2/2}
+}
+\]
+
+</div>
+
+<div class="equation">
+
+\[
+\boxed{
+\alpha=
+\sqrt{\frac{m\omega}{\hbar}}
+}
+\]
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<div class="section-title">
+Complete Solution
+</div>
+
+
+<div class="step">
+
+<h4>(a) \langle x\rangle</h4>
+
+<div class="equation">
+
+\[
+\langle x\rangle
+=
+\int_{-\infty}^{\infty}
+\psi_0^*x\psi_0\,dx.
+\]
+
+</div>
+
+<p>
+The probability density is even while x is odd.
+Therefore the integrand is odd:
+</p>
+
+<div class="final-equation">
+
+\[
+\boxed{
+\langle x\rangle=0
+}
+\]
+
+</div>
+
+</div>
+
+
+<div class="step">
+
+<h4>\langle x^2\rangle</h4>
+
+<div class="equation">
+
+\[
+\langle x^2\rangle
+=
+\int_{-\infty}^{\infty}
+x^2|\psi_0|^2dx
+\]
+
+</div>
+
+<div class="final-equation">
+
+\[
+\boxed{
+\langle x^2\rangle
+=
+\frac{1}{2\alpha^2}
+=
+\frac{\hbar}{2m\omega}
+}
+\]
+
+</div>
+
+</div>
+
+
+<div class="step">
+
+<h4>(b) \Delta x</h4>
+
+<div class="equation">
+
+\[
+\Delta x
+=
+\sqrt{
+\langle x^2\rangle
+-
+\langle x\rangle^2
+}
+\]
+
+</div>
+
+<div class="final-equation">
+
+\[
+\boxed{
+\Delta x=
+\sqrt{
+\frac{\hbar}{2m\omega}
+}
+}
+\]
+
+</div>
+
+</div>
+
+
+<div class="step">
+
+<h4>(c) Momentum expectation values</h4>
+
+<div class="equation">
+
+\[
+\hat p_x
+=
+-i\hbar\frac{d}{dx}
+\]
+
+</div>
+
+<p>
+Because the ground state is real and symmetric:
+</p>
+
+<div class="final-equation">
+
+\[
+\boxed{
+\langle p_x\rangle=0
+}
+\]
+
+</div>
+
+<p>
+The ground-state energy is:
+</p>
+
+<div class="equation">
+
+\[
+E_0=\frac12\hbar\omega.
+\]
+
+</div>
+
+<p>
+The average potential energy is:
+</p>
+
+<div class="equation">
+
+\[
+\langle V\rangle
+=
+\frac12m\omega^2
+\langle x^2\rangle
+\]
+
+</div>
+
+<div class="equation">
+
+\[
+\langle V\rangle
+=
+\frac12m\omega^2
+\frac{\hbar}{2m\omega}
+=
+\frac14\hbar\omega.
+\]
+
+</div>
+
+<p>
+Therefore:
+</p>
+
+<div class="equation">
+
+\[
+\langle K\rangle
+=
+E_0-\langle V\rangle
+\]
+
+\[
+=
+\frac12\hbar\omega
+-
+\frac14\hbar\omega
+\]
+
+\[
+\boxed{
+\langle K\rangle=
+\frac14\hbar\omega
+}
+\]
+
+</div>
+
+<p>
+Since K=p_x^2/2m:
+</p>
+
+<div class="final-equation">
+
+\[
+\boxed{
+\langle p_x^2\rangle
+=
+\frac12m\hbar\omega
+}
+\]
+
+</div>
+
+</div>
+
+
+<div class="step">
+
+<h4>(d) \Delta p_x</h4>
+
+<div class="equation">
+
+\[
+\Delta p_x
+=
+\sqrt{
+\langle p_x^2\rangle
+-
+\langle p_x\rangle^2
+}
+\]
+
+</
